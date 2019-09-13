@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 
 @Entity                        									// Mapear a classe como tabela no BD
@@ -26,7 +28,7 @@ public class Produto implements Serializable {
 	private String nome;
 	private Double preco;
 	
-	
+	@JsonBackReference													// Nao deixa buscar a lista de categoria dos produtos
 	@ManyToMany															// Anotações para definir o relacionamento das tabelas
 	@JoinTable(name = "PRODUTO_CATEGORIA",								// Nome da tebela que vai ligar "Categoria"e "Produto	
 				joinColumns = @JoinColumn(name = "produto_id"),			// Chave Estrangeira de Produto	

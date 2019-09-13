@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.fernando.gontijo.domain.Categoria;
 import com.fernando.gontijo.repositories.CategoriaRepository;
+import com.fernando.gontijo.services.exceptions.ObjectNotFoundException;
 
 
 
@@ -20,7 +21,8 @@ public class CategoriaService {
 	public Categoria buscar(Integer id) { // Método para buscar um obj no banco pelo ID 
 		
 		Optional<Categoria> obj = repo.findById(id); //sempre usar esse trechos para buscar obj por ID no Spring 2
-		return obj.orElse(null);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName())); // lança uma excessão caso o id não exista
 		
 	}
 	
