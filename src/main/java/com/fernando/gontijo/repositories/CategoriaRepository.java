@@ -7,7 +7,7 @@ import com.fernando.gontijo.domain.Categoria;
 
 
 @Repository
-public interface CategoriaRepositoy extends JpaRepository<Categoria, Integer> {
+public interface CategoriaRepository extends JpaRepository<Categoria, Integer> {
 
 	
 }

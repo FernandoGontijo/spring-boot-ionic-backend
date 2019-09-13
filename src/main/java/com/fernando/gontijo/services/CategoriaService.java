@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fernando.gontijo.domain.Categoria;
-import com.fernando.gontijo.repositories.CategoriaRepositoy;
+import com.fernando.gontijo.repositories.CategoriaRepository;
+
 
 
 @Service
@@ -14,7 +15,7 @@ public class CategoriaService {
 
 	
 	@Autowired
-	private CategoriaRepositoy repo;
+	private CategoriaRepository repo;
 	
 	public Categoria buscar(Integer id) { // Método para buscar um obj no banco pelo ID 
 		
