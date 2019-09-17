@@ -1,7 +1,6 @@
 package com.fernando.gontijo;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,7 @@ import com.fernando.gontijo.domain.Cidade;
 import com.fernando.gontijo.domain.Cliente;
 import com.fernando.gontijo.domain.Endereco;
 import com.fernando.gontijo.domain.Estado;
+import com.fernando.gontijo.domain.ItemPedido;
 import com.fernando.gontijo.domain.Pagamento;
 import com.fernando.gontijo.domain.PagamentoComBoleto;
 import com.fernando.gontijo.domain.PagamentoComCartao;
@@ -26,6 +26,7 @@ import com.fernando.gontijo.repositories.CidadeRepository;
 import com.fernando.gontijo.repositories.ClienteRepository;
 import com.fernando.gontijo.repositories.EnderecoRepository;
 import com.fernando.gontijo.repositories.EstadoRepository;
+import com.fernando.gontijo.repositories.ItemPedidoRepository;
 import com.fernando.gontijo.repositories.PagamentoRepository;
 import com.fernando.gontijo.repositories.PedidoRepository;
 import com.fernando.gontijo.repositories.ProdutoRepository;
@@ -56,6 +57,11 @@ public class CursomcApplication implements CommandLineRunner{
 	
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
+	
+	
 	
 	
 	public static void main(String[] args) {
@@ -105,6 +111,14 @@ public class CursomcApplication implements CommandLineRunner{
 		
 		
 		
+		ItemPedido ip1 = new ItemPedido(ped1, p1, 00.00, 1, 2000.00);
+		ItemPedido ip2 = new ItemPedido(ped1, p3, 00.00, 2, 80.00);
+		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
+		
+		
+		
+		
+		
 		
 		cat1.getProdutos().addAll(Arrays.asList(p1, p2, p3));		// Associando as categorias aos produtos 
 		
@@ -121,6 +135,19 @@ public class CursomcApplication implements CommandLineRunner{
 		est1.getCidades().addAll(Arrays.asList(c1));
 		
 		est2.getCidades().addAll(Arrays.asList(c2, c3));
+		
+		
+		ped1.getItens().addAll(Arrays.asList(ip1,ip2));
+		
+		ped2.getItens().addAll(Arrays.asList(ip3));
+
+		p1.getItens().addAll(Arrays.asList(ip1));
+
+		p2.getItens().addAll(Arrays.asList(ip3));
+
+		p3.getItens().addAll(Arrays.asList(ip2));
+		
+		
 		
 		
 		
@@ -140,6 +167,8 @@ public class CursomcApplication implements CommandLineRunner{
 		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
 		
 		pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2));
+		
+		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
 		
 		
 		
