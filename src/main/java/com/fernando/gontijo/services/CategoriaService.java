@@ -3,10 +3,12 @@ package com.fernando.gontijo.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.fernando.gontijo.domain.Categoria;
 import com.fernando.gontijo.repositories.CategoriaRepository;
+import com.fernando.gontijo.services.exceptions.DataIntegrityException;
 import com.fernando.gontijo.services.exceptions.ObjectNotFoundException;
 
 
@@ -38,6 +40,19 @@ public class CategoriaService {
 		return repo.save(obj);
 	}
 	
+	public void delete(Integer id) {				// Método para DELETAR novo elemento ao Banco de Dados 
+		find(id);
+		try {
+			
+			repo.deleteById(id);
+			
+		} catch (DataIntegrityViolationException e) {
+			
+			throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos");
+			
+		}
+		
+	}
 	
 	
 }
