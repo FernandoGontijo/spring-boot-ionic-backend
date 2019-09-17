@@ -18,7 +18,7 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository repo;
 	
-	public Categoria buscar(Integer id) { // Método para buscar um obj no banco pelo ID 
+	public Categoria find(Integer id) { // Método para buscar um obj no banco pelo ID 
 		
 		Optional<Categoria> obj = repo.findById(id); //sempre usar esse trechos para buscar obj por ID no Spring 2
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
@@ -27,11 +27,16 @@ public class CategoriaService {
 	}
 	
 	
-	public Categoria insert(Categoria obj) {
+	public Categoria insert(Categoria obj) {        // Método para ADICIONAR novo elemento ao Banco de Dados 
 		obj.setId(null);
 		return repo.save(obj);
 	}
 	
+	
+	public Categoria update(Categoria obj) {		 // Método para ATUALIZAR novo elemento ao Banco de Dados 
+		find(obj.getId());							// Metodo "Find" verifica se o id existe
+		return repo.save(obj);
+	}
 	
 	
 	

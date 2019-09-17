@@ -18,7 +18,7 @@ public class PedidoService {
 	@Autowired
 	private PedidoRepository repo;
 	
-	public Pedido buscar(Integer id) { // Método para buscar um obj no banco pelo ID 
+	public Pedido find(Integer id) { // Método para buscar um obj no banco pelo ID 
 		
 		Optional<Pedido> obj = repo.findById(id); //sempre usar esse trechos para buscar obj por ID no Spring 2
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
