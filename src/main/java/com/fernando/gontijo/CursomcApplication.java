@@ -115,10 +115,7 @@ public class CursomcApplication implements CommandLineRunner{
 		ItemPedido ip2 = new ItemPedido(ped1, p3, 00.00, 2, 80.00);
 		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
 		
-		
-		
-		
-		
+			
 		
 		cat1.getProdutos().addAll(Arrays.asList(p1, p2, p3));		// Associando as categorias aos produtos 
 		
