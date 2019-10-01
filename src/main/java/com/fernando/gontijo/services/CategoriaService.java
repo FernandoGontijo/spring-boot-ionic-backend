@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.fernando.gontijo.domain.Categoria;
+import com.fernando.gontijo.dto.CategoriaDTO;
 import com.fernando.gontijo.repositories.CategoriaRepository;
 import com.fernando.gontijo.services.exceptions.DataIntegrityException;
 import com.fernando.gontijo.services.exceptions.ObjectNotFoundException;
@@ -69,6 +70,12 @@ public class CategoriaService {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		
 		return repo.findAll(pageRequest);
+	}
+	
+	public Categoria fromDTO(CategoriaDTO objDto) {			// Construir um obj categoria a partir de um DTO
+		
+		return new Categoria (objDto.getId(), objDto.getNome());
+		
 	}
 	
 }
